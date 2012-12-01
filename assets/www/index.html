@@ -95,11 +95,6 @@
         </article>
 
         <article id="second-article" class="list">
-            <li class="highlight">
-                <strong>
-                    A framework for developers who want to design, build and share cross device apps.
-                </strong>
-            </li>
         </article>
     </section>
 
@@ -132,27 +127,33 @@
         <article class="list">
             <ul>
                 <li class="current">
-                    <a href="#main-article" data-router="article">
+                    <a href="#main-article" id="link1" data-router="article">
                         <strong>Main Article</strong>
                     </a>
                 </li>
                 <li>
-                    <a href="#second-article" data-router="article">
+                    <a href="#second-article" id="link2" data-router="article">
                         <strong>Second Article</strong>
                     </a>
                 </li>
             </ul>
         </article>
     </aside>
-
+    
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
     <!-- Lungo - Dependencies -->
     <script src="components/quojs/quo.js"></script>
     <script src="components/lungo/lungo.js"></script>
     <!-- Lungo - Sandbox App -->
+    <script src="jquery.jsonp.js"></script>
+    
     <script>
         Lungo.init({
             name: 'prueba'
         });
     </script>
+    
+    <script src="js/index.js"></script>
+
 </body>
 </html>

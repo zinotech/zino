@@ -47,3 +47,45 @@ var app = {
         console.log('Received Event: ' + id);
     }
 };
+
+
+/**
+ * Test
+ */
+$("#link1").click(function(){
+	var htmlStr = '<ul><li class="dark"><strong>LOADING...</strong></li></ul>';
+                
+	$('#main-article').html(htmlStr);
+	
+	$.ajax({
+		type: 'GET',
+		url: 'http://www.zino-tech.com/test.php?param1=11&callback=json',
+		async: false,
+		jsonpCallback: 'callback',
+		contentType: "application/json",
+		dataType: 'jsonp',
+		success: function(json) {
+		
+			$('#main-article').html('<ul><li class="dark"><strong>MAIN ARTICLE</strong></li>');
+			
+			$.each(json, function(i, obj) {
+			 	$('#main-article').append('<li>'+i+','+obj.item_id+'</li>');
+		  });
+		  $('#main-article').append('</ul>');
+		},
+		error: function(e) {
+			alert('error');
+			console.log(e.message);
+		}
+	});
+});
+
+
+/**
+ * Link 2
+ */
+$("#link2").click(function(){
+	var htmlStr = '<ul><li class="highlight"><strong>Link 2 here</strong></li></ul>';
+                
+	$('#second-article').html(htmlStr);	
+});
