@@ -69,7 +69,7 @@ $("#link1").click(function(){
 			$('#main-article').html('<ul><li class="dark"><strong>MAIN ARTICLE</strong></li>');
 			
 			$.each(json, function(i, obj) {
-			 	$('#main-article').append('<li>'+i+','+obj.item_id+'</li>');
+			 	$('#main-article').append('<li  class="feature"><img src="http://www.zino-tech.com/sites/default/files/zino%20tech%20logo.png"><strong>'+i+'</strong><br/>'+obj.item_id+'</li>');
 		  });
 		  $('#main-article').append('</ul>');
 		},
