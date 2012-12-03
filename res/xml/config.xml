@@ -32,6 +32,13 @@
     <log level="DEBUG"/>
     <preference name="useBrowserHistory" value="true" />
     <preference name="exit-on-suspend" value="false" />
+    <gap:splash src="splash.png" />
+    
+    <gap:splash src="splash/android/mdpi.png" gap:platform="android" gap:density="ldpi" />
+    <gap:splash src="splash/android/mdpi.png" gap:platform="android" gap:density="mdpi" />
+    <gap:splash src="splash/android/mdpi.png" gap:platform="android" gap:density="hdpi" />
+    <gap:splash src="splash/android/mdpi.png" gap:platform="android" gap:density="xhdpi" />
+    
 <plugins>
     <plugin name="App" value="org.apache.cordova.App"/>
     <plugin name="Geolocation" value="org.apache.cordova.GeoBroker"/>
