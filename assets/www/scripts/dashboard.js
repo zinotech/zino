@@ -16,17 +16,16 @@ $(document).ready(function() {
       jsonpCallback: 'callback',
       dataType: 'jsonp',
       
-      error: function (XMLHttpRequest, textStatus, errorThrown) {
-        console.log(JSON.stringify(XMLHttpRequest));
-        console.log(JSON.stringify(textStatus));
-        console.log(JSON.stringify(errorThrown));
+      error: function (e) {
+        console.log(e);
       },
       success: function(data) {
 
   			$('#main-article').html('<ul><li class="dark"><strong>LATEST NEWS</strong></li>');
 
  			 	$.each(data.nodes, function(key, value) {
-          $('#main-article').append($("<li></li>",{"html":"<a href='#second-article' id='" + value.node['nid'] + "' class='page_nide_pages_list_title'>" + value.node['title'] + "</a>"}));
+
+          $('#main-article ul').append("<li><a href='#second' data-router='section' id='"+ value.node['nid'] +"' data-label='Section' class='view-node'>" + value.node['title'] + "</a></li>");
           //'<li  class="feature"><strong>'+value.node['nid']+'</strong><br/>'+value.node['title']+'</li>'
         });
  			 	
@@ -39,13 +38,16 @@ $(document).ready(function() {
 });
 
 
-$('#link2').click(function() {
-  var htmlStr = '<ul><li class="dark"><strong>LOADING...</strong></li></ul>';
+
+$('a.view-node').live("click", function() {
   
-  $('#second-article').html(htmlStr);
+  var nid = $(this).attr('id');
   
+  $('#second span.title').text('LOADING..');
+  $('#second article').text('');
+
   try {
-    var urlto = "http://www.zino-tech.com/test.php?type=get&url=http://www.zino-tech.com/mobile/testpoint/node/1.json&callback=?";
+    var urlto = "http://www.zino-tech.com/test.php?type=get&url=http://www.zino-tech.com/mobile/testpoint/node/"+nid+".json&callback=?";
     
     $.ajax({
       type: 'POST',
@@ -60,14 +62,13 @@ $('#link2').click(function() {
         console.log(JSON.stringify(errorThrown));
       },
       success: function(data) {
-        console.log(data);
-  			$('#second-article').html('<ul><li class="dark"><strong>MAIN ARTICLE</strong></li>');
+        
+  			$('#second span.title').text(data.title);
 
- 			 	$('#second-article').append('<li  class="feature"><strong>'+data.title+'</strong><br/>'+data.body.und[0]['safe_value']+'</li>');
-
-  		  $('#second-article').append('</ul>');
+ 			 	$('#second article').append('<p>'+data.body.und[0]['safe_value']+'</p>');
   		},
 	  });
   }
   catch (error) { alert("page_dashboard - " + error); }
+
 });
