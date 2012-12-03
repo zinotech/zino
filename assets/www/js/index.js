@@ -54,13 +54,15 @@ var app = {
  */
 $("#link1").click(function(){
 	var htmlStr = '<ul><li class="dark"><strong>LOADING...</strong></li></ul>';
-                
+
 	$('#main-article').html(htmlStr);
 	
 	$.ajax({
 		type: 'GET',
-		url: 'http://www.zino-tech.com/test.php?param1=11&callback=json',
+		//url: 'http://www.zino-tech.com/test.php?param1=11&callback=json',
+		url: 'http://www.onlinemanual.com/zino/json',
 		async: false,
+		cache: true,
 		jsonpCallback: 'callback',
 		contentType: "application/json",
 		dataType: 'jsonp',
